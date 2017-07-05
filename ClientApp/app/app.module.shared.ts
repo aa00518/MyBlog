@@ -10,6 +10,8 @@ import { HomeComponent } from './components/home/home.component';
 import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 
+import { Sandbox } from './providers/sandbox';
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -29,6 +31,9 @@ import { CounterComponent } from './components/counter/counter.component';
             { path: 'fetch-data', component: FetchDataComponent },
             { path: '**', redirectTo: 'home' }
         ])
+    ],
+    providers: [
+        Sandbox
     ]
 })
 export class AppModuleShared {
