@@ -6,7 +6,8 @@ import 'rxjs/Rx';
 @Injectable()
 export class Sandbox {
     private _jsonHeaders: Headers;
-    private API_URL: string = "http://localhost:5000/api/";
+    //private API_URL: string = "http://localhost:5000/api/";
+    private API_URL: string = "http://myblogsite.azurewebsites.net/api/";
 
     constructor(public http: Http) {
         this._jsonHeaders = new Headers({ 'Content-Type': 'application/json' });
