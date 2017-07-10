@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/Rx';
@@ -7,14 +7,15 @@ import 'rxjs/Rx';
 export class Sandbox {
     private _jsonHeaders: Headers;
     //private API_URL: string = "http://localhost:5000/api/";
-    private API_URL: string = "http://myblogsite.azurewebsites.net/api/";
+    //private API_URL: string = "http://myblogsite.azurewebsites.net/api/";
+    private GET_USERS_URL: string = "/api/sandbox";
 
-    constructor(public http: Http) {
+    constructor(public http: Http, @Inject('ORIGIN_URL') public originUrl: string) {
         this._jsonHeaders = new Headers({ 'Content-Type': 'application/json' });
     }
 
     getAppUsers() {
-        return this.http.get(this.API_URL + "sandbox").map(res => res.json());
+        return this.http.get(this.originUrl + this.GET_USERS_URL).map(res => res.json());
     }
 
     // putOnePeople(stringToSend: string) {

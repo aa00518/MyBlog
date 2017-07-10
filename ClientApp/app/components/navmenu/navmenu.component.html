@@ -1,4 +1,4 @@
-<div class='main-nav'>
+<div class='main-nav' (window:resize)="onResize($event)">
     <div class='navbar navbar-inverse'>
         <div class='navbar-header'>
             <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'>
@@ -11,7 +11,24 @@
         </div>
         <div class='clearfix'></div>
         <div class='navbar-collapse collapse'>
-            <ul class='nav navbar-nav'>
+            <ul *ngIf="isMobile" class='nav navbar-nav'>
+                <li [routerLinkActive]="['link-active']" data-toggle='collapse' data-target='.navbar-collapse'>
+                    <a [routerLink]="['/home']">
+                        <span class='glyphicon glyphicon-home'></span> Home
+                    </a>
+                </li>
+                <li [routerLinkActive]="['link-active']" data-toggle='collapse' data-target='.navbar-collapse'>
+                    <a [routerLink]="['/counter']">
+                        <span class='glyphicon glyphicon-education'></span> Counter
+                    </a>
+                </li>
+                <li [routerLinkActive]="['link-active']" data-toggle='collapse' data-target='.navbar-collapse'>
+                    <a [routerLink]="['/fetch-data']">
+                        <span class='glyphicon glyphicon-th-list'></span> Fetch data
+                    </a>
+                </li>
+            </ul>
+            <ul *ngIf="!isMobile" class='nav navbar-nav'>
                 <li [routerLinkActive]="['link-active']">
                     <a [routerLink]="['/home']">
                         <span class='glyphicon glyphicon-home'></span> Home
