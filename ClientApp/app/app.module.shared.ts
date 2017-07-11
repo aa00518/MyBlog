@@ -11,6 +11,7 @@ import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 
 import { Sandbox } from './providers/sandbox';
+import { RainFall } from './providers/rainfall';
 
 @NgModule({
     declarations: [
@@ -33,7 +34,8 @@ import { Sandbox } from './providers/sandbox';
         ])
     ],
     providers: [
-        Sandbox
+        Sandbox,
+        RainFall
     ]
 })
 export class AppModuleShared {
