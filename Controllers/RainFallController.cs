@@ -16,11 +16,20 @@ namespace myblog.Controllers
 			SQLiteConnection cn = new SQLiteConnection(ConnectionStrings.sqliteDB.ConnectionString);
             List<RainFall> rainFall = cn.QuerySql<RainFall>("select * from RainFall order by ID desc").ToList();
 
-            //var userList = cn.QuerySql<AppUser>("SELECT * FROM Beer WHERE Name LIKE @Name", new { Name = "%ipa%" });
-            //cn.ExecuteSql("INSERT INTO Beer VALUES (ID, Name)", someAppUser);
-			//User getUser = cn.QuerySql<User>("SELECT * FROM Users WHERE userID = @userID", new { userID = 1 }).FirstOrDefault();
+            // var userList = cn.QuerySql<AppUser>("SELECT * FROM Beer WHERE Name LIKE @Name", new { Name = "%ipa%" });
+            // cn.ExecuteSql("INSERT INTO Beer VALUES (ID, Name)", someAppUser);
+			// User getUser = cn.QuerySql<User>("SELECT * FROM Users WHERE userID = @userID", new { userID = 1 }).FirstOrDefault();
+            // int count2 = database.Connection().ExecuteScalarSql<int>("SELECT COUNT(*) FROM Beer WHERE Name LIKE @Name", new { Name = "IPA" });
 
             return rainFall;
+        }
+
+        [HttpGet]
+        [Route("GetRainFallByID")]
+        public RainFall GetRainFallByID(long ID)
+        {
+            SQLiteConnection cn = new SQLiteConnection(ConnectionStrings.sqliteDB.ConnectionString);
+            return cn.QuerySql<RainFall>("select * from RainFall where ID = @ID", new { ID = ID }).FirstOrDefault();
         }
 
         public class RainFall

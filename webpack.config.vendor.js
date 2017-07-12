@@ -31,7 +31,8 @@ module.exports = (env) => {
                 'es6-promise',
                 'event-source-polyfill',
                 'jquery',
-                'zone.js',
+                'primeng/primeng',
+                'zone.js'
             ]
         },
         output: {

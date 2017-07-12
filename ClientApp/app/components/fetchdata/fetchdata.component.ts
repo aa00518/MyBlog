@@ -2,12 +2,14 @@ import { Component, Inject } from '@angular/core';
 import { Http } from '@angular/http';
 import { Sandbox } from '../../providers/sandbox';
 import { RainFall } from '../../providers/rainfall';
+import { ButtonModule, CalendarModule } from 'primeng/primeng';
 
 @Component({
     selector: 'fetchdata',
     templateUrl: './fetchdata.component.html'
 })
 export class FetchDataComponent {
+    public calendarValue: Date;
     public forecasts: WeatherForecast[];
     public toggleWeather: boolean;
     public users: any;
