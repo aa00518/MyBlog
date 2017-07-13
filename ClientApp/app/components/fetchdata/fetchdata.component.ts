@@ -2,7 +2,6 @@ import { Component, Inject } from '@angular/core';
 import { Http } from '@angular/http';
 import { Sandbox } from '../../providers/sandbox';
 import { RainFall } from '../../providers/rainfall';
-import { ButtonModule, CalendarModule } from 'primeng/primeng';
 
 @Component({
     selector: 'fetchdata',
@@ -16,6 +15,7 @@ export class FetchDataComponent {
     public rf: any;
 
     constructor(http: Http, @Inject('ORIGIN_URL') originUrl: string, public sandbox: Sandbox, public rainFall: RainFall ) {
+        this.calendarValue = new Date();
         this.toggleWeather = false;
         http.get(originUrl + '/api/SampleData/WeatherForecasts').subscribe(result => {
             this.forecasts = result.json() as WeatherForecast[];

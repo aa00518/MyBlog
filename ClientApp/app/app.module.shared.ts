@@ -10,6 +10,8 @@ import { HomeComponent } from './components/home/home.component';
 import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 
+import { CalendarModule } from 'primeng/components/calendar/calendar';
+
 import { Sandbox } from './providers/sandbox';
 import { RainFall } from './providers/rainfall';
 
@@ -25,6 +27,7 @@ import { RainFall } from './providers/rainfall';
         CommonModule,
         HttpModule,
         FormsModule,
+        CalendarModule,
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
