@@ -9,12 +9,14 @@ import { RainFall } from '../../providers/rainfall';
 })
 export class FetchDataComponent {
     public calendarValue: Date;
+    public rainFallAmount: string;
     public forecasts: WeatherForecast[];
     public toggleWeather: boolean;
     public users: any;
     public rf: any;
 
     constructor(http: Http, @Inject('ORIGIN_URL') originUrl: string, public sandbox: Sandbox, public rainFall: RainFall ) {
+        this.rainFallAmount = "";
         this.calendarValue = new Date();
         this.toggleWeather = false;
         http.get(originUrl + '/api/SampleData/WeatherForecasts').subscribe(result => {
@@ -36,6 +38,16 @@ export class FetchDataComponent {
     doSelectRainFall() {
         this.rainFall.getRainFall().subscribe(response => {
             this.rf = response;
+        });
+    }
+
+    doInsertRainFall() {
+        if (this.rainFallAmount.trim() === "") {
+            this.rainFallAmount = "1";
+        }
+        let rfAmount: number = Number.parseFloat(this.rainFallAmount);
+        this.rainFall.insertRainFall(this.calendarValue.toLocaleDateString(), rfAmount).subscribe(response => {
+            this.doSelectRainFall();
         });
     }
 

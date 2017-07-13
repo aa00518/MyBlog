@@ -32,6 +32,15 @@ namespace myblog.Controllers
             return cn.QuerySql<RainFall>("select * from RainFall where ID = @ID", new { ID = ID }).FirstOrDefault();
         }
 
+        [HttpPost]
+        [Route("InsertRainFall")]
+        public int InsertRainFall([FromBody]RainFall obj)
+        {
+            SQLiteConnection cn = new SQLiteConnection(ConnectionStrings.sqliteDB.ConnectionString);
+            return cn.ExecuteSql("insert into RainFall (RainFallDate, RainFallAmount) values (@RainFallDate, @RainFallAmount)",
+                                 new { RainFallDate = obj.RainFallDate, RainFallAmount = obj.RainFallAmount });
+        }
+
         public class RainFall
         {
             public long ID { get; set; }

@@ -9,6 +9,7 @@ export class RainFall {
     //private API_URL: string = "http://localhost:5000/api/";
     //private API_URL: string = "http://myblogsite.azurewebsites.net/api/";
     private GET_RAINFALL_URL: string = "/api/rainfall";
+    private INSERT_RAINFALL_URL: string = "/api/rainfall/insertrainfall";
 
     constructor(public http: Http, @Inject('ORIGIN_URL') public originUrl: string) {
         this._jsonHeaders = new Headers({ 'Content-Type': 'application/json' });
@@ -18,13 +19,11 @@ export class RainFall {
         return this.http.get(this.originUrl + this.GET_RAINFALL_URL).map(res => res.json());
     }
 
-    // putOnePeople(stringToSend: string) {
-    //   //let person: string = 'farty_pants';
-    //   //let body: any = JSON.stringify(person);
-    //   //return this.http.post('http://localhost:5000/api/people', JSON.stringify({ name: 'Ricky Lake', city: 'Green Bay', dob: Date.now() }), { headers: this._jsonHeaders }).map(res => res.json());
-    //   return this.http.post('http://localhost:5000/api/people', JSON.stringify(stringToSend), { headers: this._jsonHeaders }).map(res => res.json());
-    //   //console.log('we got to here');
-    // }
+    insertRainFall(rainFallDate: string, rainFallAmount: number) {
+        return this.http.post(this.originUrl + this.INSERT_RAINFALL_URL,
+                               JSON.stringify({ RainFallDate: rainFallDate, RainFallAmount: rainFallAmount }),
+                               { headers: this._jsonHeaders }).map(res => res.json());
+    }
 
     // doSelect() {
     //   return new Promise((resolve) => {

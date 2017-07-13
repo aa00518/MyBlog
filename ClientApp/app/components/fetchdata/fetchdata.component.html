@@ -1,7 +1,20 @@
 <div class="col-lg-12">
     <h3>Rain Fall</h3>
-    <div class="row">
-        <p-calendar [(ngModel)]="calendarValue" [showIcon]="true"></p-calendar>
+    <div class="form-inline">
+        <div class="form-group">
+            <p-calendar [(ngModel)]="calendarValue" [showIcon]="true"></p-calendar>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+            <!--
+            <select class="form-control input-sm" [ngModel]="filterConditionID" (ngModelChange)="onFilterChanged($event)" style="width:300px;">
+                <option *ngFor="let fl of filterList" [value]="fl.LetterFilterConditionID">{{ fl.LetterFilterConditionName }}</option>
+            </select>
+            -->
+        <div class="form-group">
+            <input type="text" class="form-control input-sm" [(ngModel)]="rainFallAmount" placeholder="Amount" />
+        </div>
+        <div class="form-group">
+            <button type="button" class="form-control btn btn-primary btn-sm" (click)="doInsertRainFall()">Add Rain Fall</button>
+        </div>
     </div>
     <br/>
     <div class="row">
@@ -17,7 +30,7 @@
                 <tbody>
                     <tr *ngFor="let r of rf">
                         <td>{{ r.id }}</td>
-                        <td>{{ r.rainFallDate | date:"yyyy-MM-dd" }}</td>
+                        <td>{{ r.rainFallDate | date:"MM/dd/yyyy" }}</td>
                         <td>{{ r.rainFallAmount }}</td>
                     </tr>
                 </tbody>
