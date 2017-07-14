@@ -51,6 +51,10 @@ export class FetchDataComponent {
         });
     }
 
+    doDeleteRainFall(id: number) {
+        console.log(id);
+    }
+
     doToggleWeather() {
         this.toggleWeather = !this.toggleWeather;
     }

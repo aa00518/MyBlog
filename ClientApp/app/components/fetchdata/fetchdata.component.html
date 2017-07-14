@@ -25,6 +25,7 @@
                         <th>ID</th>
                         <th>Date</th>
                         <th>Amount</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -32,6 +33,11 @@
                         <td>{{ r.id }}</td>
                         <td>{{ r.rainFallDate | date:"MM/dd/yyyy" }}</td>
                         <td>{{ r.rainFallAmount }}</td>
+                        <td style="text-align:center;">
+                            <button type="button" class="btn btn-default btn-sm" title="Delete" (click)="doDeleteRainFall(r.id)">
+                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                            </button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
