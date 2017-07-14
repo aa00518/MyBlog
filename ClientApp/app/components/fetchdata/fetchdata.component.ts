@@ -52,7 +52,9 @@ export class FetchDataComponent {
     }
 
     doDeleteRainFall(id: number) {
-        console.log(id);
+        this.rainFall.deleteRainFall(id).subscribe(response => {
+            this.doSelectRainFall();
+        });
     }
 
     doToggleWeather() {

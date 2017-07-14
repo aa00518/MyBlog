@@ -10,6 +10,7 @@ export class RainFall {
     //private API_URL: string = "http://myblogsite.azurewebsites.net/api/";
     private GET_RAINFALL_URL: string = "/api/rainfall";
     private INSERT_RAINFALL_URL: string = "/api/rainfall/insertrainfall";
+    private DELETE_RAINFALL_URL: string = "/api/rainfall/deleterainfall";
 
     constructor(public http: Http, @Inject('ORIGIN_URL') public originUrl: string) {
         this._jsonHeaders = new Headers({ 'Content-Type': 'application/json' });
@@ -22,6 +23,12 @@ export class RainFall {
     insertRainFall(rainFallDate: string, rainFallAmount: number) {
         return this.http.post(this.originUrl + this.INSERT_RAINFALL_URL,
                                JSON.stringify({ RainFallDate: rainFallDate, RainFallAmount: rainFallAmount }),
+                               { headers: this._jsonHeaders }).map(res => res.json());
+    }
+
+    deleteRainFall(id: number) {
+        return this.http.post(this.originUrl + this.DELETE_RAINFALL_URL,
+                               JSON.stringify({ ID: id }),
                                { headers: this._jsonHeaders }).map(res => res.json());
     }
 

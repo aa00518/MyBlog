@@ -41,6 +41,15 @@ namespace myblog.Controllers
                                  new { RainFallDate = obj.RainFallDate, RainFallAmount = obj.RainFallAmount });
         }
 
+        [HttpPost]
+        [Route("DeleteRainFall")]
+        public int DeleteRainFall([FromBody]RainFall obj)
+        {
+            SQLiteConnection cn = new SQLiteConnection(ConnectionStrings.sqliteDB.ConnectionString);
+            return cn.ExecuteSql("delete from RainFall where ID = @ID",
+                                 new { ID = obj.ID });
+        }
+
         public class RainFall
         {
             public long ID { get; set; }
