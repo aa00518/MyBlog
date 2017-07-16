@@ -11,6 +11,10 @@ import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 
 import { CalendarModule } from 'primeng/components/calendar/calendar';
+import { ConfirmDialogModule } from 'primeng/components/confirmdialog/confirmdialog';
+import { ConfirmationService } from 'primeng/components/common/confirmationservice';
+import { GrowlModule } from 'primeng/components/growl/growl';
+import { Message } from 'primeng/components/common/message';
 
 import { Sandbox } from './providers/sandbox';
 import { RainFall } from './providers/rainfall';
@@ -28,6 +32,8 @@ import { RainFall } from './providers/rainfall';
         HttpModule,
         FormsModule,
         CalendarModule,
+        ConfirmDialogModule,
+        GrowlModule,
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
@@ -38,7 +44,8 @@ import { RainFall } from './providers/rainfall';
     ],
     providers: [
         Sandbox,
-        RainFall
+        RainFall,
+        ConfirmationService
     ]
 })
 export class AppModuleShared {

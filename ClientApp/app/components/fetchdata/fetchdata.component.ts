@@ -2,10 +2,14 @@ import { Component, Inject } from '@angular/core';
 import { Http } from '@angular/http';
 import { Sandbox } from '../../providers/sandbox';
 import { RainFall } from '../../providers/rainfall';
+import { GrowlModule } from 'primeng/components/growl/growl';
+import { ConfirmationService } from 'primeng/components/common/confirmationservice';
+import { Message } from 'primeng/components/common/message';
 
 @Component({
     selector: 'fetchdata',
-    templateUrl: './fetchdata.component.html'
+    templateUrl: './fetchdata.component.html',
+    providers: [ConfirmationService]
 })
 export class FetchDataComponent {
     public calendarValue: Date;
@@ -14,8 +18,10 @@ export class FetchDataComponent {
     public toggleWeather: boolean;
     public users: any;
     public rf: any;
+    public msgs: Message[] = [];
 
-    constructor(http: Http, @Inject('ORIGIN_URL') originUrl: string, public sandbox: Sandbox, public rainFall: RainFall ) {
+    constructor(http: Http, @Inject('ORIGIN_URL') originUrl: string, public sandbox: Sandbox, public rainFall: RainFall,
+                private confirmationService: ConfirmationService ) {
         this.rainFallAmount = "";
         this.calendarValue = new Date();
         this.toggleWeather = false;
@@ -52,14 +58,42 @@ export class FetchDataComponent {
     }
 
     doDeleteRainFall(id: number) {
-        this.rainFall.deleteRainFall(id).subscribe(response => {
-            this.doSelectRainFall();
+        this.confirmationService.confirm({
+            message: 'Do you want to delete this record?',
+            header: 'Delete Confirmation',
+            icon: 'fa fa-trash',
+            accept: () => {
+                this.rainFall.deleteRainFall(id).subscribe(response => {
+                    this.doSelectRainFall();
+                });
+                this.msgs = [{severity:'info', summary:'Confirmed', detail:'Record deleted'}];
+            },
+            reject: () => {
+                //this.msgs = [{severity:'info', summary:'Rejected', detail:'You have rejected'}];
+            }
         });
     }
 
     doToggleWeather() {
         this.toggleWeather = !this.toggleWeather;
     }
+
+    // confirm1() {
+    //     this.confirmationService.confirm({
+    //         message: 'Are you sure that you want to proceed?',
+    //         header: 'Confirmation',
+    //         icon: 'fa fa-question-circle',
+    //         accept: () => {
+    //             this.msgs = [{severity:'info', summary:'Confirmed', detail:'You have accepted'}];
+    //         },
+    //         reject: () => {
+    //             this.msgs = [{severity:'info', summary:'Rejected', detail:'You have rejected'}];
+    //         }
+    //     });
+    // }
+
+    // confirmDeleteRainFall() {
+    // }
 }
 
 interface WeatherForecast {
