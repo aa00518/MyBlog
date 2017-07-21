@@ -14,7 +14,7 @@ namespace myblog.Controllers
         public IList<RainFall> Get()
         {
 			SQLiteConnection cn = new SQLiteConnection(ConnectionStrings.sqliteDB.ConnectionString);
-            List<RainFall> rainFall = cn.QuerySql<RainFall>("select * from RainFall order by ID desc").ToList();
+            List<RainFall> rainFall = cn.QuerySql<RainFall>("select * from RainFall order by RainFallDate desc").ToList();
 
             // var userList = cn.QuerySql<AppUser>("SELECT * FROM Beer WHERE Name LIKE @Name", new { Name = "%ipa%" });
             // cn.ExecuteSql("INSERT INTO Beer VALUES (ID, Name)", someAppUser);
